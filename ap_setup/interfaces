@@ -1,0 +1,51 @@
+auto lo
+iface lo inet loopback
+
+# Configure eth0 for remote connection.
+auto eth0
+iface eth0 inet dhcp
+
+# Disable USB since it seems to mess with things:
+#auto usb0
+#iface usb0 inet static
+#    address 192.168.7.2
+#    netmask 255.255.255.0
+#    network 192.168.7.0
+#    gateway 192.168.7.1
+
+# Configure the first wifi module
+allow-hotplug wlan0
+auto wlan0
+# Client mode:
+#iface wlan0 inet dhcp
+#	wireless-power off
+#	wpa-ssid "SomeAP"
+#	wpa-ap-scan 1
+#	wpa-proto RSN
+#	wpa-psk "lol"
+#	post-up echo 1 > /proc/sys/net/ipv6/conf/wlan0/disable_ipv6
+# Host mode:
+
+iface wlan0 inet static
+	wireless-power off
+	address 10.0.0.1
+	netmask 255.255.255.0
+	#gateway 10.0.0.1 # Shouldn't need this. We're not routing upstream on wlan0!
+	#dns-nameservers 192.168.1.1 # Or this. We're not a client!
+	wireless-mode Master
+	# Configure forwarding to an upstream nic:
+	post-up /root/dev/start-forwarding.sh # UPDATE THIS LOCATION!!!!!!!!!!
+	post-up echo 1 > /proc/sys/net/ipv6/conf/wlan0/disable_ipv6
+
+# Configure eth1 for sensing:
+auto eth1
+iface eth1 inet manual
+	up ip link set dev $IFACE arp off
+	#up ip address add 0.0.0.0 dev $IFACE
+	up ip link set $IFACE  up
+	up ip link set $IFACE promisc on
+	down ip link set $IFACE promisc off
+	down ip link set $IFACE down
+	post-up for i in rx tx sg tso ufo gso gro lro; do ethtool -K $IFACE $i off; done
+	post-up echo 1 > /proc/sys/net/ipv6/conf/$IFACE/disable_ipv6
+
