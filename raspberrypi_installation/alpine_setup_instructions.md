@@ -25,12 +25,12 @@ Device     Boot Start      End  Sectors  Size Id Type
 ```
 sudo fdisk /dev/sdb
 ```
-  - __o__ to delete all partitions
-  - __n__ to create new partition
-  - Use default settings is fine
-  - __t__ to change partition type
-  - __c__ to select W95 FAT32 (LBA)
-  - __w__ to write changes to card
+  a. Command __o__ to delete all partitions
+  b. Command __n__ to create new partition
+  c. Use default settings is fine
+  d. Command __t__ to change partition type
+  e. Command __c__ to select W95 FAT32 (LBA)
+  f. Command __w__ to write changes to card
 
 3. Create a EXT4 file system with `mkdosfs`:
 ```
