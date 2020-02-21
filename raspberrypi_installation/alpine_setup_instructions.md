@@ -32,6 +32,7 @@ sudo fdisk /dev/sdb
   5. Command __c__ to select W95 FAT32 (LBA)
   6. Command __w__ to write changes to card
 
+
 3. Create a EXT4 file system with `mkdosfs`:
 ```
 sudo mkdosfs -F 32 /dev/sdX1
