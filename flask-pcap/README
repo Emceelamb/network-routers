@@ -1,6 +1,6 @@
 This is a router that forwards network traffic to a locally hosted webpage.
 
-The packets are captured with Scapy and sent over WebSocket with a Flask server.
+The packets are captured with Scapy and sent over WebSocket on a Flask server.
 
 To use first create a python virtual environment and install the required packages by invoking `pip install -r requirements.txt`
 
