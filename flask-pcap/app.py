@@ -18,7 +18,7 @@ thread_stop_event = Event()
 
 class Sniffer(Thread):
     def __init__(self):
-        self.delay = 1
+        self.delay = 0.5
         super(Sniffer, self).__init__()
 
     def snifferGenerator(self):
