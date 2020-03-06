@@ -1,0 +1,11 @@
+This is a router that serves webpage that shows traffic on the network.
+
+It uses scapy to sniff network activity and forwards it over WebSockets to a flask server using socketio.
+
+To run create a virtual environment and install required packages with python -m pip install -r requirements.txt
+
+Required packages are:
+- flask
+- flask-socketio
+- eventlet
+- scapy
