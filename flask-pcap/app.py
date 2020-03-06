@@ -26,7 +26,7 @@ class Sniffer(Thread):
         while not thread_stop_event.isSet():
             pkts = sniff(count=1, prn=lambda x: x.summary())
             print(pkts)
-            socketio.emit('event repeater', str(pkts), namespace='/network-listener')
+            socketio.emit('event repeater', str(pkts[0]), namespace='/network-listener')
 
             ### random number test
             # number = round(random.random()*10, 3)
