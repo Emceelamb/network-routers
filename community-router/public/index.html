@@ -20,6 +20,12 @@
       width:600px;
       margin:auto;
     }
+    #peers{
+      padding:0;
+    }
+    .peerIp{
+      list-style:none;
+    }
     .container {
       width: 800px;
       margin: auto;
@@ -33,6 +39,13 @@
         display: flex;
         align-items: stretch;
     }
+
+    .flex-item {
+        margin: 10px;
+        padding: 10px;
+        background: rgba(100,100,100,0.5);
+        width: 50%;
+    }
     /* DivTable.com */
     .divTable{
         display: table;
@@ -45,7 +58,7 @@
     }
     .divTableHeading {
         background-color: #EEE;
-            display: table-header-group;
+        display: table-header-group;
               
     }
     .divTableCell, .divTableHead {
@@ -62,7 +75,6 @@
         background-color: #EEE;
         display: table-footer-group;
         font-weight: bold;
-                  
     }
     .divTableBody {
         display: table-row-group;
@@ -88,11 +100,14 @@
                  | |  \ \ |_| | |_| | | |_| ____| |    
                  |_|   |_\___/|____/   \__)_____)_|    
       </pre>
-      <div>
+      <div style="text-align:right">
         <p><em>* Listen with headphones</em></p>
       </div>
+      <div>
+        <div id="Address"></div>
+      </div>
       <div class="flex-container">
-        <div style="flex-grow: 1">
+        <div style="flex-grow: 1" class="flex-item">
           <div class="divTable" style="width: 100%;">
             <div class="divTableBody">
               <div class="divTableRow"><h2>Inbound Packets</h2></div>
@@ -100,12 +115,26 @@
             </div>
           </div>
         </div>
-        <div style="flex-grow: 1">
+        <div  class="flex-item">
           <div class="divTable" style="width: 100%;">
             <div class="divTableBody">
               <div class="divTableRow"><h2>Outbound Packets</h2></div>
               <div class="divTableRow" id="outbound"></div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="peersList">
+            <h2>Peers</h2>
+            <ul id="peers"></ul>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div id="messages">
+          <input type="text" id="message" name="message">
+          <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value)">
           </div>
         </div>
       </div>

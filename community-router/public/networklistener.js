@@ -1,17 +1,23 @@
-var synth = new Tone.Synth().toMaster();
 let PANVAR = 0; // sets pan range
-let synths = [];
+// let synths = [];
 
 let socket = io()
 socket.on('connect', function() {
-socket.emit('my event', "Connected mah boi!!!!!")
+  socket.emit('my event', "Connected mah boi!!!!!")
 })
 
 socket.on('server response', function(res){
-  console.log(res)
+  ip = res.split(":");
+  console.log(ip[3])
+  $('#peers').append(
+    `
+    <li class="peerIp">${ip[3]}</li>
+    `
+  )
 })
 socket.on('packet capture', function(res){
-
+  let panner = new Tone.Panner(PANVAR).toDestination();
+  let synth = new Tone.Synth().connect(panner);
   packet = res.split("\t");
   if (packet[4] != undefined){
     port = packet[3].split(",")
@@ -22,7 +28,13 @@ socket.on('packet capture', function(res){
   // console.log(packets[0])
   if(packet[1].includes("10.0.0")) {
 
-  $("#inbound").html(
+    PANVAR = -1;
+    synth.disconnect();
+    synth.connect(panner);
+    //synth.setNote("C2");
+    synth.triggerAttackRelease("C2","64n");
+    // synths.push(synth);
+  $("#outbound").html(
     `
           <div class="divTableRow">
             <div class="divTableCell"><strong>Domain</strong></div>
@@ -48,7 +60,13 @@ socket.on('packet capture', function(res){
   )
   } else {
 
-  $("#outbound").html(
+    PANVAR = 1;
+    synth.disconnect();
+    synth.connect(panner);
+    //synth.setNote("C4");
+    synth.triggerAttackRelease("C4", "64n");
+    // synths.push(synth);
+  $("#inbound").html(
     `
           <div class="divTableRow">
             <div class="divTableCell"><strong>Domain</strong></div>
@@ -90,42 +108,5 @@ socket.on('packet capture', function(res){
   // )
 
   
-  //let synth = new Tone.Synth().connect(panner);
-
-  //if (res.includes("443")) {
-  //  //play a middle 'C' for the duration of an 8th note
-  //  // panner.pan(-1); // synth.disconnect();
-  //  PANVAR = -1;
-  //  synth.disconnect();
-  //  synth.connect(panner);
-  //  //synth.setNote("C2");
-  //  synth.triggerAttackRelease("C2", "8n");
-  //  synths.push(synth);
-  //  $("div.packet").replaceWith(
-  //    `<div class='packet' style='color:green'>${res}</div>`
-  //  );
-  //} else if (res.includes("80")) {
-  //  // panner.pan(1);
-  //  PANVAR = 1;
-  //  synth.disconnect();
-  //  synth.connect(panner);
-  //  //synth.setNote("C4");
-  //  synth.triggerAttackRelease("C4", "8n");
-  //  synths.push(synth);
-  //  $("div.packet").replaceWith(
-  //    `<div class='packet' style='color:red'>${res}</div>`
-  //  );
-  //} else {
-  //  // panner.pan(0);
-  //  PANVAR = 0;
-  //  synth.disconnect();
-  //  synth.connect(panner);
-  //  //synth.setNote("C3");
-  //  synth.triggerAttackRelease("c3", "8n");
-  //  synths.push(synth);
-  //  $("div.packet").replaceWith(
-  //    `<div class='packet' style='color:black'>${res}</div>`
-  //    );
-  //}
   // console.log(res)
 })

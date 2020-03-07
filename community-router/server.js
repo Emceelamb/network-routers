@@ -11,7 +11,8 @@ app.use(express.static('public'))
 
 io.on('connection', (socket) => {
   console.log('Connection was made!')
-  io.emit('server response', 'you connected')
+  var address = socket.handshake.address;
+  io.emit('server response', `${address}`)
 
 });
 
@@ -27,13 +28,12 @@ server.listen(PORT, ()=>{
   console.log(`Listening on ${PORT}`)
 })
 
-//let sniff = spawn('tshark', [ '-i', 'wlan0', '-Y', '!tcp.port==8000',  '-l']);
 let sniff = spawn('tshark', [ '-i', 'wlan0', '-Y', '!tcp.port==8000',  '-l', '-T', 'fields', '-e', 'dns.qry.name', '-e', 'ip.src', '-e', 'ip.dst', '-e', 'tcp.port']);
 //let sniff = spawn('tshark', [ '-i wlan0 -l']);
 //let sniff = spawn('tshark', [ '-i wlan0 && tcp.port != 8000 -l']);
+//let sniff = spawn('tshark', [ '-i', 'wlan0', '-Y', '!tcp.port==8000',  '-l']);
 
 sniff.stdout.setEncoding('utf-8');
 sniff.stdout.on('data', function (data) {
-  console.log(data)
   io.emit('packet capture', data);
 });
