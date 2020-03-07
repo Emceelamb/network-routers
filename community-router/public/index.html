@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Network Listener</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <script>
+      let socket = io()
+      socket.on('connect', function() {
+      socket.emit('my event', "Connected mah boi!!!!!")
+      })
+
+      socket.on('server response', function(res){
+        console.log(res)
+      })
+      socket.on('packet capture', function(res){
+        console.log(res)
+      })
+  </script>
+    <h1>Network Listener</h1>
+</body>
+</html>
+
