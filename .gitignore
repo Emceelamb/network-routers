@@ -2,4 +2,4 @@ alpine-setup-files/
 */community-router/
 */virtualenv/
 /*/__pycache__/
-
+*/node_modules/
