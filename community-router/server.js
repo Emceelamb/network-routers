@@ -14,6 +14,15 @@ io.on('connection', (socket) => {
   var address = socket.handshake.address;
   io.emit('server response', `${address}`)
 
+  console.log("We have a new client: " + socket.id);
+  // When this user emits, client side: socket.emit('otherevent',some data);
+  socket.on('chatmessage', function (data) {
+ // Data comes in as whatever was sent, including objects
+  console.log("Received: 'chatmessage' " + data);
+  
+// Send it to all of the clients
+  socket.broadcast.emit('chatmessage', data);
+  })
 });
 
 io.on('disconnect', ()=>{
