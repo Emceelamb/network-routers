@@ -20,5 +20,6 @@ View and listen to the network traffic of the network and chat with your peers.
 ## Installation & setup  
 1. Configure routing in /router-config
 2. Configure splashpage in /splashpage
-3. Begin nodogsplash with `nodogsplash &`
-4. Begin chat server with `npm start`
+3. Start Access point with `router/initap`
+4. Begin nodogsplash with `nodogsplash &`
+5. Begin chat server with `npm start`
