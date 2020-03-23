@@ -1,7 +1,6 @@
 # Setup a base router on Alpine Linux
 
 ## Requirements
-- Alpine Linux
 - Raspberry Pi with onbard WiFi
 - Ethernet connection
 - Software packages installed:
