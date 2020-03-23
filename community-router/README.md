@@ -23,3 +23,10 @@ View and listen to the network traffic of the network and chat with your peers.
 3. Start Access point with `router/initap`
 4. Begin nodogsplash with `nodogsplash &`
 5. Begin chat server with `npm start`
+
+## Software
+- hostapd to create access point
+- dnsmasq for dns resolution and ip allocation
+- nodogsplash for captive portal
+- iptables to forward traffic
+- node/socketio for chat server
