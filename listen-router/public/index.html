@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Document</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.5.39/Tone.js"></script>
    <style>
     body {
       font-family: monospace;
@@ -119,8 +120,29 @@
                  | |  \ \ |_| | |_| | | |_| ____| |    
                  |_|   |_\___/|____/   \__)_____)_|    
       </pre>
+      <div style="text-align:right">
+        <p><em>* Listen with headphones</em></p>
+      </div>
       <div>
         <div id="Address"></div>
+      </div>
+      <div class="flex-container">
+        <div style="flex-grow: 1" class="flex-item">
+          <div class="divTable" style="width: 100%;">
+            <div class="divTableBody">
+              <div class="divTableRow"><h2>Inbound Packets</h2></div>
+              <div class="divTableRow" id="inbound"></div>
+            </div>
+          </div>
+        </div>
+        <div  class="flex-item">
+          <div class="divTable" style="width: 100%;">
+            <div class="divTableBody">
+              <div class="divTableRow"><h2>Outbound Packets</h2></div>
+              <div class="divTableRow" id="outbound"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="flex-container">
         <div class="flex-item">

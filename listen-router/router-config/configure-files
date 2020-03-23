@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Moving files..."
+
+cp hostapd.conf /etc/hostapd/hostapd.conf
+cp dnsmasq.conf /etc/dnsmasq.conf
+cp interfaces /etc/network/interfaces
+
+echo "Finished moving files."

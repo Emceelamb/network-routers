@@ -1,0 +1,20 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+
+# Configure the first wifi module
+allow-hotplug wlan0
+auto wlan0
+
+iface wlan0 inet static
+	wireless-power off
+	address 10.0.0.1
+	netmask 255.255.255.0
+	wireless-mode Master
+	# Configure forwarding to an upstream nic:
+	post-up /root/dev/start-forwarding.sh # UPDATE THIS LOCATION!!!!!!!!!!
+	post-up echo 1 > /proc/sys/net/ipv6/conf/wlan0/disable_ipv6
+
