@@ -7,12 +7,19 @@ const spawn  = require('child_process').spawn;
 
 const PORT = process.env.PORT ||8000;
 
+let clientList = [];
+
 app.use(express.static('public'))
 
 io.on('connection', (socket) => {
   console.log('Connection was made!')
   var address = socket.handshake.address;
   io.emit('server response', `${address}`)
+
+  clientList.push(address);
+
+  clientList = [...new Set(clientList)];
+  io.emit('server response', `${clientList}`);
 
   console.log("We have a new client: " + socket.id);
   // When this user emits, client side: socket.emit('otherevent',some data);
@@ -23,11 +30,20 @@ io.on('connection', (socket) => {
 // Send it to all of the clients
   socket.broadcast.emit('chatmessage', data);
   })
+
+  socket.on('disconnect', () =>{
+    clientList = [...new Set(clientList)];
+    let index = clientList.indexOf(socket.handshake.address);
+    console.log(clientList, index, "haha");
+    if(index > -1){
+      clientList.splice(index, 1);
+      io.emit('server response', `${clientList}`);
+      
+    }
+    console.log(`${socket.id} disconnected.`)
+  });
 });
 
-io.on('disconnect', ()=>{
-  console.log('Disconnected!')
-})
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));

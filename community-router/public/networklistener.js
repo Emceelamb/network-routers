@@ -4,13 +4,18 @@ socket.on('connect', function() {
 })
 
 socket.on('server response', function(res){
-  ip = res.split(":");
-  console.log(ip[3])
-  $('#peers').append(
-    `
-    <li class="peerIp">${ip[3]}</li>
-    `
-  )
+  $('#peers').empty();
+  let ips = res.split(",")
+  console.log(ips)
+  ips.forEach((ip)=>{
+    ipAdd= ip.split(":");
+    $('#peers').append(
+      `
+      <li class="peerIp">${ipAdd[3]}</li>
+      `
+    )
+  })
+  
 })
 
 
