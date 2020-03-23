@@ -14,3 +14,9 @@ Bridges to the internet explores how routers both make local communities (LAN) a
 - [A Flask-SocketIO server](https://github.com/Emceelamb/network-routers/tree/master/flask-pcap)
 - [Listen to your network traffic](https://github.com/Emceelamb/network-routers/tree/master/listen-routera)
 - [Captive portal Setup](https://github.com/Emceelamb/network-routers/tree/master/nodogsplash)
+
+### Software Used
+- hostapd - creates access ponts
+- dnsmasq - provides dns resolution/ ip address allocation
+- iptables - forwards traffic
+- nodogsplash - creates captive portals
