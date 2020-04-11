@@ -17,6 +17,7 @@ IPTABLES=$(which iptables | grep iptables)
 if [  "$HOSTAPD" =  "" ];then
 	echo "Adding hostapd"
   sudo apt install hostapd
+  sed "/^DAEMON_CONF/ { s/^#//; s%=.*%=\"/etc/hostapd/hostapd.conf\"%;  }" /etc/default/hostapd
 else
   sudo killall hostapd
 fi
