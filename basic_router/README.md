@@ -1,4 +1,6 @@
-# Setup a base router on Alpine Linux
+# Setup a basic router on
+
+These scripts will check for software dependencies, configure routing files, and create a wireless access point. Please run the script for your operating system. 
 
 ## Requirements
 - Raspberry Pi with onbard WiFi
@@ -8,7 +10,3 @@
     - dnsmasq
     - iptables
 
-## Setup 
-- Modify `initap` with correct INGRESS and EGRESS interfaces
-- Run `./configure-files`
-- Enable access point with  `./initap`

@@ -1,5 +1,11 @@
-let PANVAR = 0; // sets pan range
-// let synths = [];
+let leftPan = new Tone.Panner(-1).toDestination();
+let leftSynth = new Tone.Synth().connect(leftPan);
+
+let midPan = new Tone.Panner(0).toDestination();
+let midSynth = new Tone.Synth().connect(midPan);
+
+let rightPan = new Tone.Panner(1).toDestination();
+let rightSynth = new Tone.Synth().connect(rightPan);
 
 let socket = io()
 socket.on('connect', function() {
@@ -16,8 +22,6 @@ socket.on('server response', function(res){
   )
 })
 socket.on('packet capture', function(res){
-  let panner = new Tone.Panner(PANVAR).toDestination();
-  let synth = new Tone.Synth().connect(panner);
   packet = res.split("\t");
   if (packet[4] != undefined){
     port = packet[3].split(",")
@@ -28,12 +32,8 @@ socket.on('packet capture', function(res){
   // console.log(packets[0])
   if(packet[1].includes("10.0.0")) {
 
-    PANVAR = -1;
-    synth.disconnect();
-    synth.connect(panner);
-    //synth.setNote("C2");
-    synth.triggerAttackRelease("C2","64n");
-    // synths.push(synth);
+    leftSynth.triggerAttackRelease("C2","64n");
+
   $("#outbound").html(
     `
           <div class="divTableRow">
@@ -60,12 +60,8 @@ socket.on('packet capture', function(res){
   )
   } else {
 
-    PANVAR = 1;
-    synth.disconnect();
-    synth.connect(panner);
-    //synth.setNote("C4");
-    synth.triggerAttackRelease("C4", "64n");
-    // synths.push(synth);
+    rightSynth.triggerAttackRelease("C4", "64n");
+
   $("#inbound").html(
     `
           <div class="divTableRow">
