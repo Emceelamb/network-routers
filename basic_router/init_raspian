@@ -8,6 +8,11 @@
 ########################################
 ############################EMCEELAMB###
 
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo "Not running as root"
+    exit
+fi
+
 echo "Checking for dependencies..."
 
 HOSTAPD=$(which hostapd | grep hostapd)
@@ -32,13 +37,16 @@ fi
 if [  "$IPTABLES" =  "" ];then
 	echo "Adding adding iptables"
   sudo apt install iptables
+  sudo apt install iptables-persistent
 fi
 
 echo "Moving config files..."
 
-sudo mv files/hostapd.conf /etc/hostapd/hostapd.conf
-sudo mv files/dnsmasq.conf /etc/dnsmasq.conf
-sudo mv files/interfaces /etc/network/interfaces 
+sudo cp files/hostapd.conf /etc/hostapd/hostapd.conf
+sudo cp files/hostapd /etc/default/hostapd
+sudo cp files/dnsmasq.conf /etc/dnsmasq.conf
+sudo cp files/interfaces /etc/network/interfaces 
+sudo cp files/sysctl.conf /etc/sysctl.conf
 
 echo "Configure dns..."
 
