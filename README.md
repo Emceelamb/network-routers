@@ -1,4 +1,4 @@
-# Bridges to the Internet
+# Network Personality
 [Presentation deck](https://bridges-to-the-internet.herokuapp.com/)
 
 An ITP Thesis exploring routers as bridges to the internet where the local meets the global.
