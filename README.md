@@ -3,7 +3,7 @@
 
 ## About
 
-Bridges to the internet explores how routers both make local communities (LAN) and provide access to the greater internet (WAN). It recontextualizes the networked landscape as media making devices while using network data as an input.
+Network Personality explores how routers both make local communities (LAN) and provide access to the greater internet (WAN). It recontextualizes the networked landscape as media making devices while using network data as an input.
 
 The routers are made with easily accessible single board computers (Raspberry Pi Model 3B+). There are a variety of community interventions in the local network which can be made at the link. This repository is both storage of my explorations and learning resources.
 
