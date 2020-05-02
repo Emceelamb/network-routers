@@ -1,11 +1,11 @@
-# Bridges to the Internet
+# Network Personality
 [Presentation deck](https://bridges-to-the-internet.herokuapp.com/)
-
-An ITP Thesis exploring routers as bridges to the internet where the local meets the global.
 
 ## About
 
-Bridges to the internet explores how routers both make local communities (LAN) and provide access to the greater internet (WAN). The routers generally are made with easily accessible single board computers (Raspberry Pi Model 3B+). For the most part when the computer is plugged into a modem/router they create a Wireless Access Point and where devices can connect to the WLAN and the traffic is forwarded. There are a variety of community interventions in the local network which can be made at the link. This repository is both storage of my explorations and learning resources.
+Network Personality explores how routers both make local communities (LAN) and provide access to the greater internet (WAN). It recontextualizes the networked landscape as media making devices while using network data as an input.
+
+The routers are made with easily accessible single board computers (Raspberry Pi Model 3B+). There are a variety of community interventions in the local network which can be made at the link. This repository is both storage of my explorations and learning resources.
 
 ## Sections
 - [How to setup up a basic router](https://github.com/Emceelamb/network-routers/tree/master/basic_router)
